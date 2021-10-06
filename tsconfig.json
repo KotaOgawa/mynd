@@ -1,0 +1,36 @@
+{
+  // この`compilerOptions`の中にTSをコンパイルする際の設定を書いていく（参考：https://zenn.dev/akino/articles/13979b65944dbc）
+  "compilerOptions": {
+    "baseUrl": "./",                                // ここに指定したディレクトリを起点として、モジュールを絶対パス的にimportすることができる（e.g. src/hgoe/fuga）
+    "paths": {},
+    "target": "es5",                                // どのバージョンのJSで出力するかを指定
+    "module": "esnext",                             // 出力するJSのモジュールを指定（CommonJSとか）
+    "jsx": "preserve",                              // tsxファイルをコンパイルする形式を指定（"preserve"だとJSXそのまま出力。"react"だとReact.createElementに変換）
+    "strict": true,                                 // 問答無用で入れておく
+    "esModuleInterop": true,                        // CommonJS形式でexportされたものをrequireではなく、import ~ fromで読み込めるなど
+    "skipLibCheck": true,                           // `*.d.ts`ファイルの型チェックをスキップする。/node_modules 配下の型チェックをスキップするのによく使われる
+    "forceConsistentCasingInFileNames": true,       // importした時にファイルの大文字、小文字を区別するかどうか
+    "lib": [                                        // コンパイル時に使用する組み込みライブラリを指定。targetで指定しているバージョンの組み込みライブラリは暗黙的に指定される
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,                                // jsやjsxファイルをコンパイル対象に入れるかどうかを指定。型チェックは行われないが、記法を指定のバージョンに変換するという作業が行われる
+    "noEmit": true,                                 // コンパイル結果を出力しない。型チェック機能をだけを使いたい時にtrueにする。コンパイルをBabelなどに任せているときに使う（Next.jsは内部的にBabelを使用）
+    "moduleResolution": "node",                     // モジュール解決の方法を指定。基本的にはnodeでOK
+    "resolveJsonModule": true,                      // jsonファイルを使用するとき、interfaceを用意しなくて良くなる（？）
+    "isolatedModules": true,                        // 全てのファイルを単一のモジュールとしてコンパイルする
+    "sourceMap": true,
+  },
+  "exclude": [                                      // コンパイルしない対象のファイルを指定
+    "node_modules",
+    "deployments",
+    ".next",
+    "out"
+  ],
+  "include": [                                      // コンパイルする対象のファイルを指定
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}
