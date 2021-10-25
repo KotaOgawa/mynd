@@ -1,8 +1,9 @@
 {
   // この`compilerOptions`の中にTSをコンパイルする際の設定を書いていく（参考：https://zenn.dev/akino/articles/13979b65944dbc）
+  // uhyoさん曰く、基本的にTSのコンパイラオプションは最も厳しい設定にしておくのが良い。TSを道具として最大限扱う方法（但しJSからの移行時はその限りではない）
   "compilerOptions": {
     "baseUrl": "./",                                // ここに指定したディレクトリを起点として、モジュールを絶対パス的にimportすることができる（e.g. src/hgoe/fuga）
-    "paths": {},
+    "paths": {},                                    // pathをインポートする際に`@/components/hogehoge`みたいにできるやつ。今の例は`src`を`@`として扱ったもの
     "target": "es5",                                // どのバージョンのJSで出力するかを指定
     "module": "esnext",                             // 出力するJSのモジュールを指定（CommonJSとか）
     "jsx": "preserve",                              // tsxファイルをコンパイルする形式を指定（"preserve"だとJSXそのまま出力。"react"だとReact.createElementに変換）
@@ -19,7 +20,7 @@
     "noEmit": true,                                 // コンパイル結果を出力しない。型チェック機能をだけを使いたい時にtrueにする。コンパイルをBabelなどに任せているときに使う（Next.jsは内部的にBabelを使用）
     "moduleResolution": "node",                     // モジュール解決の方法を指定。基本的にはnodeでOK
     "resolveJsonModule": true,                      // jsonファイルを使用するとき、interfaceを用意しなくて良くなる（？）
-    "isolatedModules": true,                        // 全てのファイルを単一のモジュールとしてコンパイルする
+    "isolatedModules": true,                        // 全てのファイルを単一のモジュールとしてコンパイルする（export必須みたいな意味合いかな？）
     "sourceMap": true,
   },
   "exclude": [                                      // コンパイルしない対象のファイルを指定
